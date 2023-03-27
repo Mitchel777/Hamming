@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<title>Hamming</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--
+	<link type="text/css" rel="stylesheet" href="file.css">
+	<script type="text/javascript" src="file.js"></script>
+	-->
+<script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=74UfEiJx-37KJJjtBeUK6rvaUDeUbWCA498nAEiDShZlCt37ShJcVGwagRpBci-WiJWLUkuviNe5NU9M5ck3NIbKIBEguE_Yhkqeh-GpizEKzSL3akCL93nGOizAjvE3XNa7MkeXTvtSIBuwSRWY7hvplyorFCCYM903Y1kjseCMPE7lNXlkQIf7X_O9VEV84Ip5lGniUJn5PKMHyC5K3R0pKtvSwHEAUHNuWwtyiddnrm_oGDA6flYwkzOLCtlhTl0Ku1B-X3xAaAZvon9xqD93sV75dMDQlUDGZc2UeiIjcRb4xyAG5PZ5OZBEeyYeYh73kiqcvrgoRqPj0AoDAR_IosdaY2JsDDQoDk7J46TOSHQpMZLozQKwZPwOUtGnOoQ0YouNst91-vVN9MCruZ4TZ04_96-nkGfVh6YMO8BsnOTETeBftWxibMNL8nznTHz1D9uawm6j6vj_rHuHV5cQ1UrO6Upy6JNOLqb1HXBrJMIxIxztmcFPwSnt-J6I3uokOm93mNOy2AjIE6R0WTBZWSpJG0SND3iNPmBBXjsoBZFmhpepp26QmwzWzc9IhkDmRCRAriHMiwiv1YtiUetx191sCvq8xRmnhRvlK24WfQeV7JnC4G2qUXLwXd1RwiLtqsxkfWKYLucqlwzVQdf_ItoyVdHfQi9aYpV0Go1WoS2JHtD28hyCk9WjefVBUXvTw_WYN4jJAZZ54Joxv8wQs7cLQlyIGsdC2Yi56dMBtdBG2DebDzft7DHBZjKGSelW1R_QZ_dUVIx10USMs_8MX9I-pCM02sMkT0HpgQndy31WN6wt5nciGPOJNM5EtClz2Ri9-eXe5j4jIfszBYRIKkm3mwPYWrwADkV6nk8kVagUwHIeeUn3t9KtQjOGZVgan7O0IVLJm8L2N8r_2UCJYettOoJzljfk9rGIWjkARKhghDKXgmD-kWQSwR-aZGrG2ivAkiZloJNATArn905nqPATZq4f9DZbyhQQhhk" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9zNDQwdmxhLnN0b3JhZ2UueWFuZGV4Lm5ldC9yZGlzay9hZjczY2QwM2I1Y2RhNmVjMzQxYzQ1NjQ2OTkyMDQ1OTlkMTcxZDc1NWEzZjZjNWVjZTU4N2U0Y2M5Y2JmYjUxLzYzM2MyZDJjL193S1UyYWNFM1M0Nndnb21LVWF4X0I4OUdEUVFQRGd1T3RBVnc5d2Y5U3c4Ukp3SEhFRzV2d001TGNKU1Q2MlNVVkNONzBOanp0QWxUZnFrREVzSGxRPT0_dWlkPTAmZmlsZW5hbWU9aGFtbWluZy5odG1sJmRpc3Bvc2l0aW9uPWF0dGFjaG1lbnQmaGFzaD1ZdU9weEphb1MwZHVseSUyYmk0aXdwcUswdjExdzdzRXIwSiUyYlJNTWFGd1U1NCUzZCZsaW1pdD0wJmNvbnRlbnRfdHlwZT10ZXh0JTJmaHRtbCZvd25lcl91aWQ9MjYyNzE1NTcmZnNpemU9MTQzOSZoaWQ9MjQxODQwNDJkYjk3ZDk3ZDM5NWYwNmIzYWQ0ZDg1MjYmbWVkaWFfdHlwZT1kZXZlbG9wbWVudCZ0a252PXYyJnJ0b2tlbj1IT2cxUEczaHFZRHImZm9yY2VfZGVmYXVsdD1ubyZ5Y3JpZD1uYS1mYjExZGUzMGJlYzExODI0ZTE4Y2U2OGRiNzk4MzU5OC1kb3dubG9hZGVyMTVoJnRzPTVlYTM0Zjg0NGEzMDAmcz1lNDg2NDMyODVlMjJkZWE1N2JkYjU3Mzk1ZjQ3ZTM5ZTJhM2Q4YWI2MThiNTA0MjBlYWNiNTM1ZjI3YjIzZDdmJnBiPVUyRnNkR1ZrWDEtaGY3VV9Dc3R2UkVHNVN2RUwtd2Z1UWpHZ3JmNzllUkUzak54UGpKM0l4Q3B3b2tUaEN6QkFVTlRkZzJCdEI2eUlCNGVxSXRLai0zaUN6SkVVS0wzOEdaSDVXMVRtZXlv"/></head>
+<body>
+	<style>
+	.content {
+		margin: 10px;
+		}
+	.row {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	input[type="text"] {
+		background: rgb(245, 242, 242);
+		border: 2px solid #ba0b7d;
+		font-family: Arial;
+		font-size: 14px;
+		max-width: 100%;
+		outline: none;
+		padding: 10px 20px;
+		width: 10%;
+		box-shadow: none;
+		border-radius: 5px;
+		margin-bottom: 5px;
+	}
+	input[type="button"] {
+		font-weight: bold;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	label {
+		display: block;
+		font-weight: normal;
+		padding: 5px;
+	}
+</style>
+	<div class="content">
+		<h1>Hamming</h1>
+		<div class="row">
+			<label>Original message</label>
+			<input type='text' id='mes' maxlength='4'>
+			<input type='button' onclick='code()' value='Code'>
+		</div>
+		<div class="row">
+			<label>Coded message</label>
+			<input type='text' id='mes_cod' maxlength='7'>
+			<input type='button' onclick='decode()' value='Decode'>
+			<span id="error"></span>
+		</div>
+		<div class="row">
+			<label>Decoded message</label>
+			<input type='text' id='mes_decod' maxlength='7'>
+			<span id="error1"></span>
+			<span id="error2"></span>
+			<span id="correct"></span>
+		</div>
+	</div>
+
+<script>
+	
+	function code() {
+		let message = document.getElementById('mes').value;
+		const firstFigure = message[0]
+		const secondFigure = message[1]
+		const thirdFigure = message[2]
+		const fourthFigure = message[3]
+		let fifthFigure
+		let sixthFigure
+		let seventhFigure
+		if ((firstFigure=='0' || firstFigure=='1')&&(secondFigure=='0' || secondFigure=='1')&&(thirdFigure=='0' || thirdFigure=='1')&&(fourthFigure=='0' || fourthFigure=='1')&&(message.length==4)){
+			if ((Number(firstFigure)+Number(secondFigure)+Number(thirdFigure))%2==0){
+				fifthFigure = '0'
+			} else {
+				fifthFigure = '1'
+			}
+			if ((Number(secondFigure)+Number(thirdFigure)+Number(fourthFigure))%2==0){
+				sixthFigure = '0'
+			} else {
+				sixthFigure = '1'
+			}
+			if ((Number(firstFigure)+Number(thirdFigure)+Number(fourthFigure))%2==0){
+				seventhFigure = '0'
+			} else {
+				seventhFigure = '1'
+			}
+			message+= fifthFigure+sixthFigure+seventhFigure
+			document.getElementById('mes_cod').value = message;
+		}else {
+			document.getElementById('error').innerText = 'error, try to enter other number';
+		}
+	}
+	function decode(){
+		let message = document.getElementById('mes_cod').value;
+		let firstFigure = message[0]
+		let secondFigure = message[1]
+		let thirdFigure = message[2]
+		let fourthFigure = message[3]
+		let fifthFigure = message[4]
+		let sixthFigure = message[5]
+		let seventhFigure = message[6]
+		let arrMistake = []
+		let mistake
+		if ((firstFigure=='0' || firstFigure=='1')&&(secondFigure=='0' || secondFigure=='1')&&(thirdFigure=='0' || thirdFigure=='1')&&(fourthFigure=='0' || fourthFigure=='1')&&(fifthFigure=='0' || fifthFigure=='1')&&(sixthFigure=='0' || sixthFigure=='1')&&(seventhFigure=='0' || seventhFigure=='1')&&(message.length==7)){
+			if ((Number(firstFigure)+Number(secondFigure)+Number(thirdFigure))%2!=Number(fifthFigure)){
+				arrMistake.push(5)
+			}
+			if ((Number(secondFigure)+Number(thirdFigure)+Number(fourthFigure))%2!=Number(sixthFigure)){
+				arrMistake.push(6)
+			}
+			if ((Number(firstFigure)+Number(thirdFigure)+Number(fourthFigure))%2!=Number(seventhFigure)){
+				arrMistake.push(7)
+			}
+			if (arrMistake.length==3){
+				thirdFigure=Math.abs(Number(thirdFigure)-1)
+				mistake = 'third figure'
+			}
+			if (arrMistake.length==2){
+				if ((arrMistake[0]==5) && (arrMistake[1]==6)){
+					secondFigure=Math.abs(Number(secondFigure)-1)
+					mistake = 'second figure'
+				} else if(arrMistake[0]==5 && arrMistake[1]==7){
+					firstFigure=Math.abs(Number(firstFigure)-1)
+					mistake = 'first figure'
+				} else{
+					fourthFigure=Math.abs(Number(fourthFigure)-1)
+					mistake = 'fourth figure'
+				}
+			}
+			if(arrMistake.length==1){
+				if (arrMistake[0]==5){
+					fifthFigure=Math.abs(Number(fifthFigure)-1)
+					mistake = 'fifth figure'
+				} else if(arrMistake[0]==6){
+					sixthFigure=Math.abs(Number(sixthFigure)-1)
+					mistake = 'sixth figure'
+				} else{
+					seventhFigure=Math.abs(Number(seventhFigure)-1)
+					mistake = 'seventh figure'
+				}
+			}
+			message=firstFigure+secondFigure+thirdFigure+fourthFigure+fifthFigure+sixthFigure+seventhFigure
+			document.getElementById('mes_decod').value = message;
+			if (arrMistake.length==0){
+				document.getElementById('correct').innerText = 'The coded message is correct';
+			} else{
+				document.getElementById('error2').innerText = `error, you have mistake in the ${mistake}`;
+			}
+		} else{
+			document.getElementById('error1').innerText = 'error, try to enter other number';		
+		}
+	}
+</script>
+</body>
+</html>
